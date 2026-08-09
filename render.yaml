@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: awea-advisory
+    runtime: node
+    plan: free
+    region: singapore
+    buildCommand: npm ci --omit=dev
+    startCommand: npm start
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        sync: false
+      - key: MONGODB_DB_NAME
+        value: awea_advisory
+      - key: MONGODB_DNS_SERVERS
+        value: 8.8.8.8,1.1.1.1
+      - key: EMAIL_USER
+        value: aweaconnect@gmail.com
+      - key: EMAIL_APP_PASSWORD
+        sync: false
+      - key: NOTIFICATION_EMAIL
+        value: aweaconnect@gmail.com

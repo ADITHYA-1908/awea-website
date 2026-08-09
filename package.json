@@ -1,0 +1,25 @@
+{
+  "name": "awea-advisory-fullstack",
+  "version": "1.0.0",
+  "description": "Full-stack industrial advisory website inspired by the provided AWeA layout",
+  "main": "src/server.js",
+  "engines": {
+    "node": ">=20.11 <23"
+  },
+  "scripts": {
+    "dev": "nodemon src/server.js",
+    "start": "node src/server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-rate-limit": "^8.6.2",
+    "helmet": "^8.3.0",
+    "mongoose": "^9.9.1",
+    "nodemailer": "^9.0.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}
