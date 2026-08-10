@@ -45,3 +45,8 @@ body{background:#fff;color:var(--ink)}
 section[id]{scroll-margin-top:105px}
 @media(max-width:950px){.site-header nav{border-top:1px solid #e4eaf0}.site-header nav a{width:100%;padding:8px 0}.site-header nav .nav-cta{text-align:center;padding:11px 16px}.nav-toggle{display:block}.site-header nav a:not(.nav-cta):after{display:none}}
 @media(max-width:620px){.back-to-top{right:15px;bottom:15px;width:42px;height:42px}.scroll-progress{height:2px}}
+
+/* Header logo styling */
+.brand{display:flex;align-items:center;gap:12px}
+.site-logo{display:block;height:44px;width:auto;object-fit:contain}
+@media(max-width:620px){.site-logo{height:36px}}
