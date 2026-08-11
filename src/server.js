@@ -30,7 +30,18 @@ app.use(helmet({
 }));
 app.use(express.json({ limit: '20kb', type: 'application/json' }));
 app.use(express.urlencoded({ extended: false, limit: '20kb' }));
-app.use(express.static(path.join(__dirname, '..', 'public'), { maxAge: '1d', etag: true }));
+const publicDirectory = path.join(__dirname, '..', 'public');
+const noCacheHeaders = { 'Cache-Control': 'no-store, no-cache, must-revalidate' };
+
+app.use(express.static(publicDirectory, {
+  maxAge: '1d',
+  etag: true,
+  setHeaders(res, filePath) {
+    if (path.basename(filePath) === 'index.html') {
+      res.set(noCacheHeaders);
+    }
+  }
+}));
 
 const submissionLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
@@ -115,7 +126,7 @@ app.post('/api/diagnostic', submissionLimiter, async (req, res) => {
 });
 
 app.get('*', (_req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
+  res.sendFile(path.join(publicDirectory, 'index.html'), { headers: noCacheHeaders });
 });
 
 app.use((error, _req, res, _next) => {
